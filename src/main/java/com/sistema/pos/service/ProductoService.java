@@ -84,19 +84,14 @@ public class ProductoService {
 		List<Almacen> almacenes = almacenRepository.findBySucursalId(idSucursal);
 
 		if (almacenes.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontraron almacenes para la sucursal dada");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"No se encontraron almacenes para la sucursal dada");
 		}
 
-		List<ProductoVentaDTO> productos = almacenes.stream()
-				.flatMap(almacen -> almacen.getProductosAlmacen().stream())
+		List<ProductoVentaDTO> productos = almacenes.stream().flatMap(almacen -> almacen.getProductosAlmacen().stream())
 				.filter(ProductoAlmacen::isActivo)
-				.map(pa -> new ProductoVentaDTO(
-						pa.getProducto().getNombre(),
-						pa.getProducto().getDescripcion(),
-						pa.getProducto().getId(),
-						pa.getStock(),
-						pa.getProducto().getPrecioVenta() 
-				))
+				.map(pa -> new ProductoVentaDTO(pa.getProducto().getNombre(), pa.getProducto().getDescripcion(),
+						pa.getProducto().getId(), pa.getStock(), pa.getProducto().getPrecioVenta()))
 				.collect(Collectors.toList());
 
 		if (productos.isEmpty()) {
@@ -104,4 +99,5 @@ public class ProductoService {
 		}
 		return productos;
 	}
+	
 }

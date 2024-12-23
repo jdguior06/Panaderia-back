@@ -44,10 +44,6 @@ public class Usuario implements UserDetails{
     private boolean cuentaNoBloqueada;
     private boolean credencialesNoExpiradas;
     
-    @ManyToOne
-    @JoinColumn(name = "tenant_id")
-    private Tenant tenant;
-    
     private String themeColor;
 
     private boolean esAdministradorPrincipal;

@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-
-
+import java.time.ZoneId;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,8 +23,8 @@ public class Nota_Entrada  {
     private Long id;
 
     private LocalDateTime fecha;
+    
     private float total;
-    private float descuento;
 
     @ManyToOne
     @JoinColumn(name = "id_almacen")
@@ -39,5 +38,10 @@ public class Nota_Entrada  {
 
     @OneToMany(mappedBy = "notaId", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetalleNotaE> detalles;
+    
+    @PrePersist
+    public void prePersist() {
+    	fecha = LocalDateTime.now(ZoneId.of("America/La_Paz"));
+    }
 
 }

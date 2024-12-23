@@ -37,12 +37,4 @@ public class Proveedor {
     @JsonIgnore
     private List<Nota_Entrada> notasEntrada;
 
-    @ManyToOne
-    @JoinColumn(name = "id_almacen")
-    @JsonIgnore
-    private Almacen almacen;
-
-    public Long getAlmacenId() {
-        return almacen != null ? almacen.getId() : null; // Retorna el ID del almacén o null si no hay relación
-    }
 }

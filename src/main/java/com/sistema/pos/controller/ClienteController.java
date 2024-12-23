@@ -34,14 +34,12 @@ public class ClienteController {
     private ClienteService service;
 
 	@GetMapping
-//	@PreAuthorize("hasAuthority('GESTIONAR_CLIENTE')")
 	public ResponseEntity<ApiResponse<List<Cliente>>> listarClientes(@RequestParam(value = "search", required = false) String searchTerm) {
 		List<Cliente> clientes; //= service.listCliente();
 		if (searchTerm != null && !searchTerm.isEmpty()) {
             clientes = service.buscarClientes(searchTerm);
         } else {
-            // Si no hay término de búsqueda, se pueden devolver todos los clientes
-            clientes = service.listCliente(); // Método para listar todos los clientes
+            clientes = service.listCliente(); 
         }
 		return new ResponseEntity<>(
 				ApiResponse.<List<Cliente>>builder()
@@ -54,7 +52,6 @@ public class ClienteController {
 	}
     
 	@GetMapping("/{id}")
-//	@PreAuthorize("hasAuthority('GESTIONAR_CLIENTE')")
 	public ResponseEntity<ApiResponse<Cliente>> obtenerCliente(@PathVariable Long id) {
 		try {
 			Cliente usuariosOpt = service.obtenerClientePorId(id);
@@ -79,7 +76,7 @@ public class ClienteController {
     
 
 	@PatchMapping("/{id}")
-//	@PreAuthorize("hasAuthority('GESTIONAR_CLIENTE')")
+	@PreAuthorize("hasAuthority('PERMISO_EDITAR_CLIENTES')")
 	public ResponseEntity<ApiResponse<Cliente>>actualizarUsuario(@PathVariable Long id, @Valid @RequestBody Cliente userDTO, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			List<String> errors = bindingResult.getAllErrors().stream()
@@ -114,7 +111,7 @@ public class ClienteController {
 	}
 
 	@PatchMapping("/{id}/desactivar")
-//	@PreAuthorize("hasAuthority('GESTIONAR_CLIENTE')")
+	@PreAuthorize("hasAuthority('PERMISO_ELIMINAR_CLIENTES')")
 	public ResponseEntity<ApiResponse<Void>> desactivarCliente(@PathVariable Long id) {
 		try {
 			service.eliminarCliente(id);
@@ -137,7 +134,7 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-//	@PreAuthorize("hasAuthority('GESTIONAR_CLIENTE')")
+	@PreAuthorize("hasAuthority('PERMISO_CREAR_CLIENTES')")
 	public ResponseEntity<ApiResponse<Cliente>> guardarCliente(@Valid @RequestBody Cliente cliente, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			List<String> errors = bindingResult.getAllErrors().stream()

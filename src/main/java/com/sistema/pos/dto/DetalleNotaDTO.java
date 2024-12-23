@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DetalleNotaDTO {
     private int cantidad;
-    private float costoUnitario;
     private Long productoId;
 }

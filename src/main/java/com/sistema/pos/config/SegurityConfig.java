@@ -26,31 +26,16 @@ public class SegurityConfig {
 		@Bean
 		protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 			return http
-					.csrf(csrf -> csrf.disable()) // Desactivar CSRF para APIs REST; habilitarlo para formularios si es necesario
+					.csrf(csrf -> csrf.disable())
 					.authorizeHttpRequests(authorize -> authorize
 							.requestMatchers(
-									"/pos/v3/api-docs/**",  // Documentación OpenAPI
-									"/pos/swagger-ui/**",   // Recursos de Swagger UI
-									"/pos/swagger-ui.html", // Página principal de Swagger UI
-									"/pos/swagger-resources/**",
-									"/pos/webjars/**",
-									"/pos/plan",
-									"/pos/suscriptor/crear",
-									"/pos/auth/**",
-									"/v3/api-docs/**",
-									"/swagger-ui/**",
-									"/swagger-ui.html",
-									"/swagger-resources/**",
-									"/webjars/**"
-							).permitAll()             // Permitir acceso público a estas rutas
-							.requestMatchers(
-									"/pos/registro**", "/pos/js/**", "/pos/css/**", "/pos/img/**"
+									"/guior/auth/**"
 							).permitAll()
 							.requestMatchers(HttpMethod.OPTIONS).permitAll()
-							.anyRequest().authenticated() // Requerir autenticación para todo lo demás
+							.anyRequest().authenticated()
 					)
 					.sessionManagement(sessionManager -> sessionManager
-							.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless para JWT
+							.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) 
 					.authenticationProvider(authenticationProvider)
 					.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 					.build();

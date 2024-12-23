@@ -137,6 +137,7 @@ public class UsuarioService {
 				.nombre(userDetails.getNombre())
 				.apellido(userDetails.getApellido())
 				.id(userDetails.getId())
+				.themeColor(userDetails.getThemeColor())
             .build();
 	}
 	

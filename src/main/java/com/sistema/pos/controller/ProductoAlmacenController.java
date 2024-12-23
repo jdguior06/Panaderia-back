@@ -27,7 +27,6 @@ public class ProductoAlmacenController {
     @Autowired
     private ProductoAlmacenService productoAlmacenService;
 
-    // Obtener todos los productos en almacenes
     @GetMapping
     public ResponseEntity<ApiResponse<List<ProductoAlmacenDTO>>> getAllProductoAlmacen(@PathVariable Long idAlmacen) {
         List<ProductoAlmacenDTO> productoAlmacens = productoAlmacenService.findAllByAlmacenId(idAlmacen);
@@ -41,7 +40,6 @@ public class ProductoAlmacenController {
         );
     }
 
-   // Obtener un producto en el almacén por ID
    @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<ProductoAlmacen>> getProductoAlmace(@PathVariable Long id) {
         try {
@@ -65,14 +63,12 @@ public class ProductoAlmacenController {
         }
     }
 
-    // Guardar o actualizar el stock de un producto en el almacén usando DetalleNotaDTO
     @PostMapping
     public ResponseEntity<ApiResponse<ProductoAlmacen>> guardarProductoAlmacen(
             @Valid @RequestBody ProductoAlmacen productoAlmacen,
             @RequestBody DetalleNotaDTO detalleNotaDTO,
             BindingResult bindingResult) {
 
-        // Validación de errores
         if (bindingResult.hasErrors()) {
             List<String> errors = bindingResult.getAllErrors().stream()
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
@@ -86,7 +82,6 @@ public class ProductoAlmacenController {
         }
 
         try {
-            // Guardar o actualizar el stock de un producto en el almacén
             ProductoAlmacen producto = productoAlmacenService.save(productoAlmacen, detalleNotaDTO);
             return new ResponseEntity<>(
                     ApiResponse.<ProductoAlmacen>builder()

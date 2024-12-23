@@ -20,13 +20,10 @@ public class BackupController {
     @Autowired
     private BackupService backupService;
 
-    // Endpoint para crear y descargar un backup de la base de datos
     @GetMapping("/download")
     public ResponseEntity<InputStreamResource> downloadBackup() {
         try {
             File backupFile = backupService.createBackup();
-
-            // Preparamos el archivo para ser descargado
             InputStreamResource resource = new InputStreamResource(new FileInputStream(backupFile));
 
             HttpHeaders headers = new HttpHeaders();
@@ -44,8 +41,7 @@ public class BackupController {
             return ResponseEntity.internalServerError().body(null);
         }
     }
-
-    // Endpoint para restaurar un backup desde un archivo cargado
+    
     @PostMapping("/upload")
     public ResponseEntity<String> uploadBackup(@RequestParam("file") MultipartFile file) {
         try {

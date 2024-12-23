@@ -34,7 +34,6 @@ public class AlmacenController {
         );
     }
 
-    // Nuevo endpoint para obtener todos los almacenes
     @GetMapping("/todos")
     public ResponseEntity<ApiResponse<List<Almacen>>> getAllAlmacenes() {
         List<Almacen> almacenes = almacenService.findAll();
@@ -55,19 +54,6 @@ public class AlmacenController {
                 ApiResponse.<Almacen>builder()
                         .statusCode(HttpStatus.OK.value())
                         .message("Detalles del almacén")
-                        .data(almacen)
-                        .build()
-        );
-    }
-
-    // Nuevo endpoint para obtener almacén por proveedor
-    @GetMapping("/proveedor/{proveedorId}")
-    public ResponseEntity<ApiResponse<Almacen>> getAlmacenPorProveedor(@PathVariable Long proveedorId) {
-        Almacen almacen = almacenService.obtenerAlmacenPorProv(proveedorId);
-        return ResponseEntity.ok(
-                ApiResponse.<Almacen>builder()
-                        .statusCode(HttpStatus.OK.value())
-                        .message("Almacén asociado al proveedor")
                         .data(almacen)
                         .build()
         );

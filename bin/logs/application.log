@@ -1,0 +1,485 @@
+2024-11-29 14:36:27 - HV000001: Hibernate Validator 8.0.1.Final
+2024-11-29 14:36:27 - Starting SistemaPosBackApplication using Java 21.0.3 with PID 23924 (D:\Proyectos\sistema-pos-back\target\classes started by Diego in D:\Proyectos\sistema-pos-back)
+2024-11-29 14:36:27 - No active profile set, falling back to 1 default profile: "default"
+2024-11-29 14:36:27 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-29 14:36:27 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-29 14:36:28 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-29 14:36:28 - Finished Spring Data repository scanning in 121 ms. Found 23 JPA repository interfaces.
+2024-11-29 14:36:29 - Tomcat initialized with port 8080 (http)
+2024-11-29 14:36:29 - Initializing ProtocolHandler ["http-nio-8080"]
+2024-11-29 14:36:29 - Starting service [Tomcat]
+2024-11-29 14:36:29 - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-29 14:36:29 - Initializing Spring embedded WebApplicationContext
+2024-11-29 14:36:29 - Root WebApplicationContext: initialization completed in 2267 ms
+2024-11-29 14:36:30 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-29 14:36:30 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-29 14:36:30 - HHH000026: Second-level cache disabled
+2024-11-29 14:36:30 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-29 14:36:30 - HikariPool-1 - Starting...
+2024-11-29 14:36:30 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1e076a3a
+2024-11-29 14:36:30 - HikariPool-1 - Start completed.
+2024-11-29 14:36:32 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-29 14:36:32 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-29 14:36:33 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-29 14:36:34 - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-29 14:36:34 - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-29 14:36:34 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-29 14:36:35 - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, JwtAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2024-11-29 14:36:36 - LiveReload server is running on port 35729
+2024-11-29 14:36:36 - Starting ProtocolHandler ["http-nio-8080"]
+2024-11-29 14:36:36 - Tomcat started on port 8080 (http) with context path '/pos'
+2024-11-29 14:36:36 - Started SistemaPosBackApplication in 9.349 seconds (process running for 10.368)
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.nombre 
+    from
+        permiso p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        r1_0.id,
+        r1_0.nombre 
+    from
+        rol r1_0 
+    where
+        r1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.rol_id,
+        p1_1.id,
+        p1_1.nombre 
+    from
+        rol_permiso p1_0 
+    join
+        permiso p1_1 
+            on p1_1.id=p1_0.permiso_id 
+    where
+        p1_0.rol_id=?
+2024-11-29 14:36:36 - 
+    select
+        r1_0.id,
+        r1_0.nombre,
+        p1_0.rol_id,
+        p1_1.id,
+        p1_1.nombre 
+    from
+        rol r1_0 
+    left join
+        rol_permiso p1_0 
+            on r1_0.id=p1_0.rol_id 
+    left join
+        permiso p1_1 
+            on p1_1.id=p1_0.permiso_id 
+    where
+        r1_0.id=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:36:36 - 
+    select
+        p1_0.id,
+        p1_0.costo,
+        p1_0.descripcion,
+        p1_0.limite_sucursales,
+        p1_0.limite_usuarios,
+        p1_0.nombre,
+        p1_0.tipo 
+    from
+        plan p1_0 
+    where
+        p1_0.nombre=?
+2024-11-29 14:42:47 - Application shutdown requested.
+2024-11-29 14:42:47 - Stopping ProtocolHandler ["http-nio-8080"]
+2024-11-29 14:42:47 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-29 14:42:47 - HikariPool-1 - Shutdown initiated...
+2024-11-29 14:42:47 - HikariPool-1 - Shutdown completed.

@@ -1,5 +1,7 @@
 package com.sistema.pos.dto;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +15,5 @@ public class ProductoAlmacenDTO {
 	private Long id_producto;
 	private int stock;
 	private Long almacen_id;
-
+	private LocalDateTime ultimaModificacion;
 }
