@@ -78,5 +78,12 @@ public class CajaController {
 		return ResponseEntity.ok(ApiResponse.<Void>builder().statusCode(HttpStatus.OK.value())
 				.message("Caja desactivado correctamente").build());
 	}
+	
+	@PatchMapping("/{idCaja}/activar")
+	public ResponseEntity<ApiResponse<Void>> activarCaja(@PathVariable Long idSucursal, @PathVariable Long idCaja) {
+		cajaService.activarCajaEnSucursal(idSucursal, idCaja);
+		return ResponseEntity.ok(ApiResponse.<Void>builder().statusCode(HttpStatus.OK.value())
+				.message("Caja desactivado correctamente").build());
+	}
 
 }

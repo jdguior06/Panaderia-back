@@ -23,9 +23,8 @@ public class BackupService {
     @Value("${spring.datasource.password}")
     private String dbPassword;
 
-    private static final String BACKUP_DIR = "backups/"; // Directorio de almacenamiento de backups
+    private static final String BACKUP_DIR = "backups/"; 
 
-    // Método para crear un backup de la base de datos
     @LoggableAction
     public File createBackup() throws IOException, InterruptedException {
         String dbName = dbUrl.substring(dbUrl.lastIndexOf("/") + 1);

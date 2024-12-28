@@ -48,8 +48,8 @@ public class VentaPDFService {
         for (DetalleVenta detalle : venta.getDetalleVentaList()) {
             table.addCell(new Cell(new Phrase(detalle.getProducto().getNombre(), tableBodyFont)));
             table.addCell(new Cell(new Phrase(String.valueOf(detalle.getCantidad()), tableBodyFont)));
-            table.addCell(new Cell(new Phrase("BS" + detalle.getPrecio(), tableBodyFont)));
-            table.addCell(new Cell(new Phrase("BS" + detalle.getMonto(), tableBodyFont)));
+            table.addCell(new Cell(new Phrase("BS " + detalle.getPrecio(), tableBodyFont)));
+            table.addCell(new Cell(new Phrase("BS " + detalle.getMonto(), tableBodyFont)));
         }
 
         document.add(table);
@@ -66,14 +66,14 @@ public class VentaPDFService {
 
         for (MetodoPago metodoPago : venta.getMetodosPago()) {
             paymentTable.addCell(new Cell(new Phrase(metodoPago.getTipoPago().name(), tableBodyFont)));
-            paymentTable.addCell(new Cell(new Phrase("Bs" + metodoPago.getMonto(), tableBodyFont)));
-            paymentTable.addCell(new Cell(new Phrase("BS" + metodoPago.getCambio(), tableBodyFont)));
+            paymentTable.addCell(new Cell(new Phrase("Bs " + metodoPago.getMonto(), tableBodyFont)));
+            paymentTable.addCell(new Cell(new Phrase("BS " + metodoPago.getCambio(), tableBodyFont)));
         }
 
         document.add(paymentTable);
         document.add(new Paragraph(" ")); 
 
-        document.add(new Paragraph("Total de la Venta: BS" + venta.getTotal(), totalFont));
+        document.add(new Paragraph("Total de la Venta: BS " + venta.getTotal(), totalFont));
 
         document.close();
 

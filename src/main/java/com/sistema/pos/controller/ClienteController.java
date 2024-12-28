@@ -35,12 +35,25 @@ public class ClienteController {
 
 	@GetMapping
 	public ResponseEntity<ApiResponse<List<Cliente>>> listarClientes(@RequestParam(value = "search", required = false) String searchTerm) {
-		List<Cliente> clientes; //= service.listCliente();
+		List<Cliente> clientes; 
 		if (searchTerm != null && !searchTerm.isEmpty()) {
             clientes = service.buscarClientes(searchTerm);
         } else {
             clientes = service.listCliente(); 
         }
+		return new ResponseEntity<>(
+				ApiResponse.<List<Cliente>>builder()
+						.statusCode(HttpStatus.OK.value())
+						.message(HttpStatusMessage.getMessage(HttpStatus.OK))
+						.data(clientes)
+						.build(),
+				HttpStatus.OK
+		);
+	}
+	
+	@GetMapping("/activos")
+	public ResponseEntity<ApiResponse<List<Cliente>>> listarClientesActivos() {
+		List<Cliente> clientes = service.listClienteActivos();
 		return new ResponseEntity<>(
 				ApiResponse.<List<Cliente>>builder()
 						.statusCode(HttpStatus.OK.value())
@@ -114,7 +127,30 @@ public class ClienteController {
 	@PreAuthorize("hasAuthority('PERMISO_ELIMINAR_CLIENTES')")
 	public ResponseEntity<ApiResponse<Void>> desactivarCliente(@PathVariable Long id) {
 		try {
-			service.eliminarCliente(id);
+			service.desactivarCliente(id);
+			return new ResponseEntity<>(
+					ApiResponse.<Void>builder()
+							.statusCode(HttpStatus.OK.value())
+							.message("Cliente desactivado correctamente")
+							.build(),
+					HttpStatus.OK
+			);
+		} catch (ResponseStatusException e) {
+			return new ResponseEntity<>(
+					ApiResponse.<Void>builder()
+							.statusCode(e.getStatusCode().value())
+							.message(e.getReason())
+							.build(),
+					e.getStatusCode()
+			);
+		}
+	}
+	
+	@PatchMapping("/{id}/activar")
+	@PreAuthorize("hasAuthority('PERMISO_ELIMINAR_CLIENTES')")
+	public ResponseEntity<ApiResponse<Void>> activarCliente(@PathVariable Long id) {
+		try {
+			service.activarCliente(id);
 			return new ResponseEntity<>(
 					ApiResponse.<Void>builder()
 							.statusCode(HttpStatus.OK.value())

@@ -21,8 +21,6 @@ public class ProductoAlmacen {
     private Long id;
 
     private int stock;
-    
-    private boolean activo;
 
     @ManyToOne
     @JoinColumn(name = "almacen_id")

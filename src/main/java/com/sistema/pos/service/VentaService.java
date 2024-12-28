@@ -1,5 +1,6 @@
 package com.sistema.pos.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -63,6 +64,14 @@ public class VentaService {
 	public List<Venta> listarVentas() {
 		return ventaRepository.findAll();
 	}
+	
+	public Double obtenerTotalVentasPorFechas(LocalDateTime startDate, LocalDateTime endDate) {
+	    return ventaRepository.sumTotalVentasByFechaVentaBetween(startDate, endDate);
+	}
+	
+	public List<Venta> obtenerVentasPorFechas(LocalDateTime startDate, LocalDateTime endDate) {
+        return ventaRepository.findVentasByFechaVentaBetween(startDate, endDate);
+    }
 
 	public Venta obtenerVenta(Long id) {
 		Optional<Venta> venta = ventaRepository.findById(id);
@@ -79,6 +88,7 @@ public class VentaService {
 		CajaSesion cajaSesion = cajaSesionService.obtenerCajaSesion(ventaDTO.getId_caja_sesion());
 
 		Cliente cliente = clienteService.obtenerClientePorId(ventaDTO.getId_cliente());
+		
 		Venta venta = new Venta();
 		venta.setCliente(cliente);
 		venta.setCajaSesion(cajaSesion);

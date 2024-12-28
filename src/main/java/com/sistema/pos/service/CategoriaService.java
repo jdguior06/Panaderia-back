@@ -22,6 +22,10 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
     
+    public List<Categoria> findAllActive() {
+        return categoriaRepository.findByActivoTrue();
+    }
+    
     @LoggableAction
     public Categoria save(CategoriaDTO categoriaDTO) {
     	Categoria categoria = new Categoria();
@@ -49,9 +53,16 @@ public class CategoriaService {
 	}
     
     @LoggableAction
-	public Categoria eliminarCategoria(Long id) {
+	public Categoria desactivarCategoria(Long id) {
 		Categoria categoria = findById(id);
 		categoria.setActivo(false);
+		return categoriaRepository.save(categoria);
+	}
+    
+    @LoggableAction
+	public Categoria activarCategoria(Long id) {
+		Categoria categoria = findById(id);
+		categoria.setActivo(true);
 		return categoriaRepository.save(categoria);
 	}
 

@@ -33,7 +33,6 @@ public class Nota_Entrada  {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_proveedor")
-
     private Proveedor proveedor;
 
     @OneToMany(mappedBy = "notaId", cascade = CascadeType.ALL, orphanRemoval = true)

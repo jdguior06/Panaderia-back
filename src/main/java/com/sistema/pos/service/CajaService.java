@@ -85,6 +85,13 @@ public class CajaService {
         caja.setActivo(false);
         cajaRepository.save(caja);
     }
+    
+    @LoggableAction
+    public void activarCajaEnSucursal(Long idSucursal, Long idCaja) {
+        Caja caja = obtenerCajaDeSucursal(idSucursal, idCaja);
+        caja.setActivo(true);
+        cajaRepository.save(caja);
+    }
 
     public boolean existsById(Long id) {
         return cajaRepository.existsById(id);

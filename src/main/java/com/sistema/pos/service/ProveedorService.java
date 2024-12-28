@@ -19,6 +19,10 @@ public class ProveedorService {
     public List<Proveedor> listProveedor() {
 		return proveedorRespository.findAll();
 	}
+    
+    public List<Proveedor> listProveedorActivos() {
+		return proveedorRespository.findByActivoTrue();
+	}
 	
 	public Proveedor obtenerProveedorPorId(Long id) {
 		Optional<Proveedor> proveedor = proveedorRespository.findById(id);
@@ -46,9 +50,16 @@ public class ProveedorService {
 	}
 	
 	@LoggableAction
-	public void eliminarProveedor(Long id) {
+	public void desactivarProveedor(Long id) {
 		Proveedor proveedor = obtenerProveedorPorId(id);
 		proveedor.setActivo(false);
+		proveedorRespository.save(proveedor);
+	}
+	
+	@LoggableAction
+	public void activarProveedor(Long id) {
+		Proveedor proveedor = obtenerProveedorPorId(id);
+		proveedor.setActivo(true);
 		proveedorRespository.save(proveedor);
 	}
 	

@@ -19,15 +19,18 @@ import lombok.NoArgsConstructor;
 public class Cliente {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+	
     private String nombre;
     
     private String apellido;
     
     @Email(message = "El email debe ser válido")
     private String email;
+    
     private String nit;
+    
     private boolean activo;
+    
 }

@@ -1,6 +1,7 @@
 package com.sistema.pos.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Sucursal {
     @Column(length = 20)
     private String nit;
     
+    @NotEmpty(message = "El nombre no debe estar vacio")
     private String nombre;
     
     private String razon_social;

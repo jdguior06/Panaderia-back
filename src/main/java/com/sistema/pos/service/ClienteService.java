@@ -21,6 +21,10 @@ public class ClienteService {
 		return clienteRepository.findAll();
 	}
 	
+	public List<Cliente> listClienteActivos() {
+		return clienteRepository.findByActivoTrue();
+	}
+	
 	public Cliente obtenerClientePorId(Long id) {
 		Optional<Cliente> user = clienteRepository.findById(id);
 		if (user.isPresent()) {
@@ -47,9 +51,16 @@ public class ClienteService {
 	}
 	
 	@LoggableAction
-	public void eliminarCliente(Long id) {
+	public void desactivarCliente(Long id) {
 		Cliente cliente = obtenerClientePorId(id);
 		cliente.setActivo(false);
+		clienteRepository.save(cliente);
+	}
+	
+	@LoggableAction
+	public void activarCliente(Long id) {
+		Cliente cliente = obtenerClientePorId(id);
+		cliente.setActivo(true);
 		clienteRepository.save(cliente);
 	}
 	

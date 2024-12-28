@@ -76,6 +76,13 @@ public class AlmacenService {
         almacen.setActivo(false);
         almacenRepository.save(almacen);
     }
+    
+    @LoggableAction
+	public void activarAlmacenEnSucursal(Long idSucursal, Long idAlmacen) {
+        Almacen almacen = obtenerAlmacenDeSucursal(idSucursal, idAlmacen);
+        almacen.setActivo(true);
+        almacenRepository.save(almacen);
+    }
 
 
 

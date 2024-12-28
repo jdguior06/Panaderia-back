@@ -91,7 +91,6 @@ public class ProductoAlmacenService {
             nuevoProductoAlmacen.setProducto(producto);
             nuevoProductoAlmacen.setAlmacen(almacen);
             nuevoProductoAlmacen.setStock(cantidad);
-            nuevoProductoAlmacen.setActivo(true);
             return productoAlmacenRepository.save(nuevoProductoAlmacen);
         }
     }
@@ -113,16 +112,8 @@ public class ProductoAlmacenService {
             productoAlmacen.setStock(detalleNotaDTO.getCantidad());
             productoAlmacen.setAlmacen(almacen);
             productoAlmacen.setProducto(producto);
-            productoAlmacen.setActivo(true);
             return productoAlmacenRepository.save(productoAlmacen);
         }
-    }
-
-    @LoggableAction
-    public ProductoAlmacen eliminar(Long id) {
-        ProductoAlmacen productoAlmacen =obtener(id);
-        productoAlmacen.setActivo(false);
-        return productoAlmacenRepository.save(productoAlmacen);
     }
     
     public Optional<ProductoAlmacen> buscarAlmacenConStock(Long idProducto, Integer cantidad) {

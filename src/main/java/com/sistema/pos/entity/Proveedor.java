@@ -1,15 +1,10 @@
 package com.sistema.pos.entity;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Entity
 @Data
@@ -32,9 +27,5 @@ public class Proveedor {
     private String email;
     
     private boolean activo;
-
-    @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private List<Nota_Entrada> notasEntrada;
 
 }

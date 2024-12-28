@@ -1,12 +1,10 @@
 package com.sistema.pos.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +21,7 @@ public class Producto {
 	private String codigo;
 
 	@Column(length = 50)
+	@NotEmpty(message = "El nombre no debe estar vacio")
 	private String nombre;
 
 	@Column(length = 1000)
@@ -39,9 +38,5 @@ public class Producto {
 	private Categoria categoria;
 
 	private boolean activo;
-
-	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonIgnore
-	private List<DetalleNotaE> detalles;
 
 }

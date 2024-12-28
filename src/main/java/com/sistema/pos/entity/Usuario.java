@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,16 +28,19 @@ public class Usuario implements UserDetails{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+	
+	@NotEmpty(message = "El nombre no debe estar vacio")
     private String nombre;
     
+	@NotEmpty(message = "El apellido no debe estar vacio")
     private String apellido;
     
     @Email(message = "El email debe ser válido")
     private String email;
     
+    @NotEmpty(message = "La contraseña no debe estar vacio")
     private String password; 
     
     private boolean activo;
@@ -45,8 +49,6 @@ public class Usuario implements UserDetails{
     private boolean credencialesNoExpiradas;
     
     private String themeColor;
-
-    private boolean esAdministradorPrincipal;
     
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(

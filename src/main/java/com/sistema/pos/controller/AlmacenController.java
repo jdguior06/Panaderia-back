@@ -124,4 +124,17 @@ public class AlmacenController {
         );
     }
     
+    @PatchMapping("/{idAlmacen}/activar")
+    @PreAuthorize("hasAuthority('PERMISO_ADMINISTRAR_ALMACENES')")
+    public ResponseEntity<ApiResponse<Void>> activarAlmacen(
+            @PathVariable Long idSucursal, @PathVariable Long idAlmacen) {
+        almacenService.activarAlmacenEnSucursal(idSucursal, idAlmacen);
+        return ResponseEntity.ok(
+                ApiResponse.<Void>builder()
+                        .statusCode(HttpStatus.OK.value())
+                        .message("Almacén desactivado correctamente")
+                        .build()
+        );
+    }
+    
 }

@@ -162,7 +162,30 @@ public class ProductoController {
     @PreAuthorize("hasAuthority('PERMISO_ADMINISTRAR_PRODUCTOS')")
     public ResponseEntity<ApiResponse<Void>> desactivarProducto(@PathVariable Long id) {
 		try {
-			productoService.eliminarProducto(id);
+			productoService.desactivarProducto(id);
+			return new ResponseEntity<>(
+					ApiResponse.<Void>builder()
+							.statusCode(HttpStatus.OK.value())
+							.message("Producto desactivado correctamente")
+							.build(),
+					HttpStatus.OK
+			);
+		} catch (ResponseStatusException e) {
+			return new ResponseEntity<>(
+					ApiResponse.<Void>builder()
+							.statusCode(e.getStatusCode().value())
+							.message(e.getReason())
+							.build(),
+					e.getStatusCode()
+			);
+		}
+	}
+    
+    @PatchMapping("/{id}/activar")
+    @PreAuthorize("hasAuthority('PERMISO_ADMINISTRAR_PRODUCTOS')")
+    public ResponseEntity<ApiResponse<Void>> activarProducto(@PathVariable Long id) {
+		try {
+			productoService.activarProducto(id);
 			return new ResponseEntity<>(
 					ApiResponse.<Void>builder()
 							.statusCode(HttpStatus.OK.value())

@@ -54,9 +54,16 @@ public class SucursalService {
     }
 
     @LoggableAction
-    public void deleteById(Long id) {
+    public void desactivarSucursal(Long id) {
     	Sucursal sucursal = findById(id);
     	sucursal.setActivo(false);
+        sucursalRepository.save(sucursal);
+    }
+    
+    @LoggableAction
+    public void activarSucursal(Long id) {
+    	Sucursal sucursal = findById(id);
+    	sucursal.setActivo(true);
         sucursalRepository.save(sucursal);
     }
     

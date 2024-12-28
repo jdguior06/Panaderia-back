@@ -21,5 +21,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	           "LOWER(c.email) LIKE LOWER(CONCAT('%', :searchTerm, '%')) OR " +
 	           "LOWER(c.nit) LIKE LOWER(CONCAT('%', :searchTerm, '%'))")
 	List<Cliente> buscarClientes(@Param("searchTerm") String searchTerm);
+	
+	List<Cliente> findByActivoTrue();
 
 }

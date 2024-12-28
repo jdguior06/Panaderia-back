@@ -22,4 +22,7 @@ public interface ProveedorRespository extends JpaRepository<Proveedor,Long> {
 
 
 	Optional<Proveedor> findById(Long proveedorId);
+	
+	List<Proveedor> findByActivoTrue();
+	
 }

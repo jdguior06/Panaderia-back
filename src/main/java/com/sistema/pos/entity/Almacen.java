@@ -1,11 +1,14 @@
 package com.sistema.pos.entity;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +17,7 @@ import java.util.List;
 public class Almacen {
 	
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private int numero;
@@ -26,13 +29,9 @@ public class Almacen {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_sucursal")
     private Sucursal sucursal;
-
+    
     @JsonIgnore
     @OneToMany(mappedBy = "almacen", cascade = CascadeType.ALL)
     private List<ProductoAlmacen> productosAlmacen;
-
-
-    @OneToMany(mappedBy = "almacen", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Nota_Entrada> notasEntrada;
 
 }

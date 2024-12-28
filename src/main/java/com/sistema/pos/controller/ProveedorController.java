@@ -49,6 +49,19 @@ public class ProveedorController {
 				HttpStatus.OK
 		);
 	}
+	
+	@GetMapping("/activos")
+	public ResponseEntity<ApiResponse<List<Proveedor>>> listarProveedoresActivos() {
+		List<Proveedor> proveedores = service.listProveedorActivos(); 
+		return new ResponseEntity<>(
+				ApiResponse.<List<Proveedor>>builder()
+						.statusCode(HttpStatus.OK.value())
+						.message(HttpStatusMessage.getMessage(HttpStatus.OK))
+						.data(proveedores)
+						.build(),
+				HttpStatus.OK
+		);
+	}
     
 	@GetMapping("/{id}")
 	public ResponseEntity<ApiResponse<Proveedor>> obtenerProveedor(@PathVariable Long id) {
@@ -111,7 +124,29 @@ public class ProveedorController {
 	@PatchMapping("/{id}/desactivar")
 	public ResponseEntity<ApiResponse<Void>> desactivarProveedor(@PathVariable Long id) {
 		try {
-			service.eliminarProveedor(id);
+			service.desactivarProveedor(id);
+			return new ResponseEntity<>(
+					ApiResponse.<Void>builder()
+							.statusCode(HttpStatus.OK.value())
+							.message("Prveedor desactivado correctamente")
+							.build(),
+					HttpStatus.OK
+			);
+		} catch (ResponseStatusException e) {
+			return new ResponseEntity<>(
+					ApiResponse.<Void>builder()
+							.statusCode(e.getStatusCode().value())
+							.message(e.getReason())
+							.build(),
+					e.getStatusCode()
+			);
+		}
+	}
+	
+	@PatchMapping("/{id}/activar")
+	public ResponseEntity<ApiResponse<Void>> activarProveedor(@PathVariable Long id) {
+		try {
+			service.activarProveedor(id);
 			return new ResponseEntity<>(
 					ApiResponse.<Void>builder()
 							.statusCode(HttpStatus.OK.value())

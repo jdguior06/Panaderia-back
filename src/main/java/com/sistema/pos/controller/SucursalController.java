@@ -134,7 +134,30 @@ public class SucursalController {
     @PreAuthorize("hasAuthority('PERMISO_ADMINISTRAR_SUCURSALES')")
     public ResponseEntity<ApiResponse<Void>> desactivarSucursal(@PathVariable Long id) {
         try {
-            sucursalService.deleteById(id);
+            sucursalService.desactivarSucursal(id);
+            return new ResponseEntity<>(
+                    ApiResponse.<Void>builder()
+                            .statusCode(HttpStatus.OK.value())
+                            .message("Sucursal desactivado correctamente")
+                            .build(),
+                    HttpStatus.OK
+            );
+        } catch (ResponseStatusException e) {
+            return new ResponseEntity<>(
+                    ApiResponse.<Void>builder()
+                            .statusCode(e.getStatusCode().value())
+                            .message(e.getReason())
+                            .build(),
+                    e.getStatusCode()
+            );
+        }
+    }
+    
+    @PatchMapping("/{id}/activar")
+    @PreAuthorize("hasAuthority('PERMISO_ADMINISTRAR_SUCURSALES')")
+    public ResponseEntity<ApiResponse<Void>> activarSucursal(@PathVariable Long id) {
+        try {
+            sucursalService.activarSucursal(id);
             return new ResponseEntity<>(
                     ApiResponse.<Void>builder()
                             .statusCode(HttpStatus.OK.value())

@@ -5,7 +5,6 @@ import com.sistema.pos.dto.ProductoDTO;
 import com.sistema.pos.entity.Almacen;
 import com.sistema.pos.entity.Categoria;
 import com.sistema.pos.entity.Producto;
-import com.sistema.pos.entity.ProductoAlmacen;
 import com.sistema.pos.dto.ProductoVentaDTO;
 import com.sistema.pos.repository.AlmacenRepository;
 import com.sistema.pos.repository.ProductoRepository;
@@ -74,9 +73,16 @@ public class ProductoService {
 	}
 
 	@LoggableAction
-	public Producto eliminarProducto(Long id) {
+	public Producto desactivarProducto(Long id) {
 		Producto producto = obtenerProducto(id);
 		producto.setActivo(false);
+		return productoRepository.save(producto);
+	}
+	
+	@LoggableAction
+	public Producto activarProducto(Long id) {
+		Producto producto = obtenerProducto(id);
+		producto.setActivo(true);
 		return productoRepository.save(producto);
 	}
 
@@ -89,7 +95,6 @@ public class ProductoService {
 		}
 
 		List<ProductoVentaDTO> productos = almacenes.stream().flatMap(almacen -> almacen.getProductosAlmacen().stream())
-				.filter(ProductoAlmacen::isActivo)
 				.map(pa -> new ProductoVentaDTO(pa.getProducto().getNombre(), pa.getProducto().getDescripcion(),
 						pa.getProducto().getId(), pa.getStock(), pa.getProducto().getPrecioVenta()))
 				.collect(Collectors.toList());

@@ -37,6 +37,19 @@ public class CategoriaController {
 				HttpStatus.OK
 		);
 	}
+    
+    @GetMapping("/active")
+    public ResponseEntity<ApiResponse<List<Categoria>>> getActiveCategories() {
+        List<Categoria> categorias = categoriaService.findAllActive();
+        return new ResponseEntity<>(
+            ApiResponse.<List<Categoria>>builder()
+                .statusCode(HttpStatus.OK.value())
+                .message(HttpStatusMessage.getMessage(HttpStatus.OK))
+                .data(categorias)
+                .build(),
+            HttpStatus.OK
+        );
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<Categoria>> getCategoria(@PathVariable Long id) {
@@ -98,7 +111,29 @@ public class CategoriaController {
     @PatchMapping("/{id}/desactivar")
 	public ResponseEntity<ApiResponse<Void>> desactivarCategoria(@PathVariable Long id) {
 		try {
-			categoriaService.eliminarCategoria(id);
+			categoriaService.desactivarCategoria(id);
+			return new ResponseEntity<>(
+					ApiResponse.<Void>builder()
+							.statusCode(HttpStatus.OK.value())
+							.message("Categoria desactivado correctamente")
+							.build(),
+					HttpStatus.OK
+			);
+		} catch (ResponseStatusException e) {
+			return new ResponseEntity<>(
+					ApiResponse.<Void>builder()
+							.statusCode(e.getStatusCode().value())
+							.message(e.getReason())
+							.build(),
+					e.getStatusCode()
+			);
+		}
+	}
+    
+    @PatchMapping("/{id}/activar")
+	public ResponseEntity<ApiResponse<Void>> activarCategoria(@PathVariable Long id) {
+		try {
+			categoriaService.activarCategoria(id);
 			return new ResponseEntity<>(
 					ApiResponse.<Void>builder()
 							.statusCode(HttpStatus.OK.value())
