@@ -100,7 +100,7 @@ public class VentaService {
 
 			Producto producto = productoService.obtenerProducto(detalleDTO.getId_producto());
 			
-			List<Almacen> almacenes = almacenRepository.findBySucursalId(cajaSesion.getCaja().getSucursal().getId());
+			List<Almacen> almacenes = almacenRepository.findBySucursal_IdAndActivoTrue(cajaSesion.getCaja().getSucursal().getId());
 	        List<ProductoAlmacen> productosAlmacen = productoAlmacenRepository.findByProductoAndAlmacenIn(producto, almacenes);
 	        
 	        int stockTotal = productosAlmacen.stream().mapToInt(ProductoAlmacen::getStock).sum();
@@ -178,7 +178,8 @@ public class VentaService {
 		
 		Venta ventaGuardada = ventaRepository.save(venta);
 		
-		if (venta.getCliente() != null && venta.getCliente().getEmail() != null) {
+		if (venta.getCliente() != null && venta.getCliente().getEmail() != null && 
+			    !venta.getCliente().getEmail().trim().isEmpty()) {
 	        try {
 	            byte[] pdf = ventaPDFService.generarFacturaPDF(venta);
 	            emailService.enviarFacturaPorCorreo(venta.getCliente().getEmail(), pdf, "Factura_" + venta.getId() + ".pdf");

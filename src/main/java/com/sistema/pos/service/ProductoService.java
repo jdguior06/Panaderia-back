@@ -5,8 +5,10 @@ import com.sistema.pos.dto.ProductoDTO;
 import com.sistema.pos.entity.Almacen;
 import com.sistema.pos.entity.Categoria;
 import com.sistema.pos.entity.Producto;
+import com.sistema.pos.entity.ProductoAlmacen;
 import com.sistema.pos.dto.ProductoVentaDTO;
 import com.sistema.pos.repository.AlmacenRepository;
+import com.sistema.pos.repository.ProductoAlmacenRepository;
 import com.sistema.pos.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,9 +30,16 @@ public class ProductoService {
 
 	@Autowired
 	private AlmacenRepository almacenRepository;
+	
+	@Autowired
+	private ProductoAlmacenRepository productoAlmacenRepository;
 
 	public List<Producto> findAll() {
 		return productoRepository.findAll();
+	}
+
+	public List<Producto> listadeProductosActivos(){
+		return productoRepository.findByActivoTrue();
 	}
 
 	public Producto obtenerProducto(Long id) {
@@ -76,6 +85,13 @@ public class ProductoService {
 	public Producto desactivarProducto(Long id) {
 		Producto producto = obtenerProducto(id);
 		producto.setActivo(false);
+		
+		List<ProductoAlmacen> productosAlmacen = productoAlmacenRepository.findByProductoId(id);
+	    for (ProductoAlmacen productoAlmacen : productosAlmacen) {
+	        productoAlmacen.setActivo(false);
+	        productoAlmacenRepository.save(productoAlmacen);
+	    }
+	    
 		return productoRepository.save(producto);
 	}
 	
@@ -87,7 +103,8 @@ public class ProductoService {
 	}
 
 	public List<ProductoVentaDTO> obtenerProductosPorSucursal(Long idSucursal) {
-		List<Almacen> almacenes = almacenRepository.findBySucursalId(idSucursal);
+		
+		List<Almacen> almacenes = almacenRepository.findBySucursal_IdAndActivoTrue(idSucursal);
 
 		if (almacenes.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,

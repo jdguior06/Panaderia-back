@@ -33,6 +33,9 @@ public class ProductoAlmacen {
     
     @Column(name = "ultima_modificacion")
     private LocalDateTime ultimaModificacion;
+    
+    @Column(name = "activo")
+    private boolean activo = true;
 
     @PrePersist
     @PreUpdate

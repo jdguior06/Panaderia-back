@@ -24,7 +24,7 @@ import java.util.Optional;
 public class ProductoAlmacenService {
 	
     @Autowired
-    ProductoAlmacenRepository productoAlmacenRepository;
+    private ProductoAlmacenRepository productoAlmacenRepository;
     
     @Autowired
     private AlmacenService almacenService;
@@ -41,7 +41,7 @@ public class ProductoAlmacenService {
 
     public List<ProductoAlmacenDTO> findAllByAlmacenId(Long idAlmacen) {
         List<ProductoAlmacenDTO> productosAlmacenDTOList = new ArrayList<>();
-        List<ProductoAlmacen> productosAlmacen = productoAlmacenRepository.findByAlmacen_Id(idAlmacen);
+        List<ProductoAlmacen> productosAlmacen = productoAlmacenRepository.findByAlmacen_IdAndActivoTrue(idAlmacen);
         for (ProductoAlmacen productoAlmacen : productosAlmacen) {
             Producto producto = productoAlmacen.getProducto();
             ProductoAlmacenDTO productoAlmacenDTO = new ProductoAlmacenDTO(
@@ -125,8 +125,8 @@ public class ProductoAlmacenService {
     }
     
     public List<ProductoConsolidadoDTO> listarProductosConsolidadoPorSucursal(Long idSucursal) {
-        List<Almacen> almacenes = almacenRepository.findBySucursalId(idSucursal);
-        List<ProductoAlmacen> productosAlmacen = productoAlmacenRepository.findByAlmacenIn(almacenes);
+        List<Almacen> almacenes = almacenRepository.findBySucursal_IdAndActivoTrue(idSucursal);
+        List<ProductoAlmacen> productosAlmacen = productoAlmacenRepository.findByActivoTrueAndAlmacenIn(almacenes);
         Map<Long, ProductoConsolidadoDTO> productoMap = new HashMap<>();
         for (ProductoAlmacen pa : productosAlmacen) {
             Long idProducto = pa.getProducto().getId();

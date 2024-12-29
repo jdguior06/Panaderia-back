@@ -14,6 +14,6 @@ public interface AlmacenRepository extends JpaRepository<Almacen, Long> {
 	
     Optional<Almacen> findByIdAndSucursal(Long idAlmacen, Sucursal sucursal);
     
-    List<Almacen> findBySucursalId(Long idSucursal);
+    List<Almacen> findBySucursal_IdAndActivoTrue(Long idSucursal);
     
 }

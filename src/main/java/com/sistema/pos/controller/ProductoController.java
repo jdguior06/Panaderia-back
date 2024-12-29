@@ -47,6 +47,19 @@ public class ProductoController {
 		);
 	}
 
+	@GetMapping("/activos")
+	public ResponseEntity<ApiResponse<List<Producto>>> productosActivos() {
+		List<Producto> productos = productoService.listadeProductosActivos();
+		return new ResponseEntity<>(
+				ApiResponse.<List<Producto>>builder()
+						.statusCode(HttpStatus.OK.value())
+						.message(HttpStatusMessage.getMessage(HttpStatus.OK))
+						.data(productos)
+						.build(),
+				HttpStatus.OK
+		);
+	}
+
     @PostMapping
     @PreAuthorize("hasAuthority('PERMISO_ADMINISTRAR_PRODUCTOS')")
     public ResponseEntity<ApiResponse<Producto>> guardarProducto(@Valid @RequestBody ProductoDTO productoDTO, BindingResult bindingResult) {

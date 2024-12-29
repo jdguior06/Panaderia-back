@@ -23,83 +23,55 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/almacen/{idAlmacen}/productos-almacen")
 public class ProductoAlmacenController {
-	
-    @Autowired
-    private ProductoAlmacenService productoAlmacenService;
 
-    @GetMapping
-    public ResponseEntity<ApiResponse<List<ProductoAlmacenDTO>>> getAllProductoAlmacen(@PathVariable Long idAlmacen) {
-        List<ProductoAlmacenDTO> productoAlmacens = productoAlmacenService.findAllByAlmacenId(idAlmacen);
-        return new ResponseEntity<>(
-                ApiResponse.<List<ProductoAlmacenDTO>>builder()
-                        .statusCode(HttpStatus.OK.value())
-                        .message(HttpStatusMessage.getMessage(HttpStatus.OK))
-                        .data(productoAlmacens)
-                        .build(),
-                HttpStatus.OK
-        );
-    }
+	@Autowired
+	private ProductoAlmacenService productoAlmacenService;
 
-   @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<ProductoAlmacen>> getProductoAlmace(@PathVariable Long id) {
-        try {
-            ProductoAlmacen productoAlmacen = productoAlmacenService.obtener(id);
-            return new ResponseEntity<>(
-                    ApiResponse.<ProductoAlmacen>builder()
-                            .statusCode(HttpStatus.OK.value())
-                            .message(HttpStatusMessage.getMessage(HttpStatus.OK))
-                            .data(productoAlmacen)
-                            .build(),
-                    HttpStatus.OK
-            );
-        } catch (ResponseStatusException e) {
-            return new ResponseEntity<>(
-                    ApiResponse.<ProductoAlmacen>builder()
-                            .statusCode(e.getStatusCode().value())
-                            .message(e.getReason())
-                            .build(),
-                    e.getStatusCode()
-            );
-        }
-    }
+	@GetMapping
+	public ResponseEntity<ApiResponse<List<ProductoAlmacenDTO>>> getAllProductoAlmacen(@PathVariable Long idAlmacen) {
+		List<ProductoAlmacenDTO> productoAlmacens = productoAlmacenService.findAllByAlmacenId(idAlmacen);
+		return new ResponseEntity<>(
+				ApiResponse.<List<ProductoAlmacenDTO>>builder().statusCode(HttpStatus.OK.value())
+						.message(HttpStatusMessage.getMessage(HttpStatus.OK)).data(productoAlmacens).build(),
+				HttpStatus.OK);
+	}
 
-    @PostMapping
-    public ResponseEntity<ApiResponse<ProductoAlmacen>> guardarProductoAlmacen(
-            @Valid @RequestBody ProductoAlmacen productoAlmacen,
-            @RequestBody DetalleNotaDTO detalleNotaDTO,
-            BindingResult bindingResult) {
+	@GetMapping("/{id}")
+	public ResponseEntity<ApiResponse<ProductoAlmacen>> getProductoAlmace(@PathVariable Long id) {
+		try {
+			ProductoAlmacen productoAlmacen = productoAlmacenService.obtener(id);
+			return new ResponseEntity<>(
+					ApiResponse.<ProductoAlmacen>builder().statusCode(HttpStatus.OK.value())
+							.message(HttpStatusMessage.getMessage(HttpStatus.OK)).data(productoAlmacen).build(),
+					HttpStatus.OK);
+		} catch (ResponseStatusException e) {
+			return new ResponseEntity<>(ApiResponse.<ProductoAlmacen>builder().statusCode(e.getStatusCode().value())
+					.message(e.getReason()).build(), e.getStatusCode());
+		}
+	}
 
-        if (bindingResult.hasErrors()) {
-            List<String> errors = bindingResult.getAllErrors().stream()
-                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                    .collect(Collectors.toList());
-            return new ResponseEntity<>(
-                    ApiResponse.<ProductoAlmacen>builder()
-                            .errors(errors)
-                            .build(),
-                    HttpStatus.BAD_REQUEST
-            );
-        }
+	@PostMapping
+	public ResponseEntity<ApiResponse<ProductoAlmacen>> guardarProductoAlmacen(
+			@Valid @RequestBody ProductoAlmacen productoAlmacen, @RequestBody DetalleNotaDTO detalleNotaDTO,
+			BindingResult bindingResult) {
 
-        try {
-            ProductoAlmacen producto = productoAlmacenService.save(productoAlmacen, detalleNotaDTO);
-            return new ResponseEntity<>(
-                    ApiResponse.<ProductoAlmacen>builder()
-                            .statusCode(HttpStatus.CREATED.value())
-                            .message(HttpStatusMessage.getMessage(HttpStatus.CREATED))
-                            .data(producto)
-                            .build(),
-                    HttpStatus.CREATED
-            );
-        } catch (ResponseStatusException e) {
-            return new ResponseEntity<>(
-                    ApiResponse.<ProductoAlmacen>builder()
-                            .statusCode(e.getStatusCode().value())
-                            .message(e.getReason())
-                            .build(),
-                    e.getStatusCode()
-            );
-        }
-    }
+		if (bindingResult.hasErrors()) {
+			List<String> errors = bindingResult.getAllErrors().stream()
+					.map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList());
+			return new ResponseEntity<>(ApiResponse.<ProductoAlmacen>builder().errors(errors).build(),
+					HttpStatus.BAD_REQUEST);
+		}
+
+		try {
+			ProductoAlmacen producto = productoAlmacenService.save(productoAlmacen, detalleNotaDTO);
+			return new ResponseEntity<>(
+					ApiResponse.<ProductoAlmacen>builder().statusCode(HttpStatus.CREATED.value())
+							.message(HttpStatusMessage.getMessage(HttpStatus.CREATED)).data(producto).build(),
+					HttpStatus.CREATED);
+		} catch (ResponseStatusException e) {
+			return new ResponseEntity<>(ApiResponse.<ProductoAlmacen>builder().statusCode(e.getStatusCode().value())
+					.message(e.getReason()).build(), e.getStatusCode());
+		}
+	}
 
 }

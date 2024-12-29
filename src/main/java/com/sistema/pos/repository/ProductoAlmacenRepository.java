@@ -20,9 +20,9 @@ public interface ProductoAlmacenRepository extends JpaRepository<ProductoAlmacen
 
     Optional<ProductoAlmacen> findByAlmacen_IdAndProducto_Id(Long almacenId, Long productoId);
 
-    List<ProductoAlmacen> findByAlmacen_Id(Long almacenId);
+    List<ProductoAlmacen> findByAlmacen_IdAndActivoTrue(Long almacenId);
     
-    List<ProductoAlmacen> findByAlmacenIn(List<Almacen> almacenes);
+    List<ProductoAlmacen> findByActivoTrueAndAlmacenIn(List<Almacen> almacenes);
     
     List<ProductoAlmacen> findByProductoAndAlmacenIn(Producto producto, List<Almacen> almacenes);
 
@@ -47,5 +47,7 @@ public interface ProductoAlmacenRepository extends JpaRepository<ProductoAlmacen
     
     @Query("SELECT pa FROM ProductoAlmacen pa WHERE pa.almacen.id = :almacenId ORDER BY pa.ultimaModificacion DESC")
     List<ProductoAlmacen> findByAlmacenIdOrderByUltimaModificacionDesc(@Param("almacenId") Long almacenId);
+    
+    List<ProductoAlmacen> findByProductoId(Long productoId);
 
 }
