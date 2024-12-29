@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer{
         registry.addMapping("/**")
 //               	.allowedOrigins("http://localhost:5173", "http://177.222.107.182") //aquí va la direccion de las peticiones
         		.allowedOriginPatterns("**")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
+                .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
