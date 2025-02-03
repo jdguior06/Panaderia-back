@@ -52,7 +52,8 @@ public class DataInitializer {
 	    permisos.add(obtenerOPersistirPermiso(permisoRepository, "PERMISO_ADMINISTRAR_PRODUCTOS"));
 	    permisos.add(obtenerOPersistirPermiso(permisoRepository, "PERMISO_GENERAR_VENTAS"));
 	    permisos.add(obtenerOPersistirPermiso(permisoRepository, "PERMISO_VER_REPORTE_VENTAS"));
-	    permisos.add(obtenerOPersistirPermiso(permisoRepository, "PERMISO_GESTIONAR_STOCK_PLATOS"));
+	    permisos.add(obtenerOPersistirPermiso(permisoRepository, "PERMISO_VER_CATEGORIAS"));
+	    permisos.add(obtenerOPersistirPermiso(permisoRepository, "PERMISO_ADMINISTRAR_CATEGORIAS"));
 	    
 	    Rol adminRole = rolRepository.findByNombre("ADMIN").orElseGet(() -> new Rol("ADMIN"));
 	    adminRole.setPermiso(permisos);

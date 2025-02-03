@@ -99,6 +99,13 @@ public class ProductoService {
 	public Producto activarProducto(Long id) {
 		Producto producto = obtenerProducto(id);
 		producto.setActivo(true);
+		
+		List<ProductoAlmacen> productosAlmacen = productoAlmacenRepository.findByProductoId(id);
+	    for (ProductoAlmacen productoAlmacen : productosAlmacen) {
+	        productoAlmacen.setActivo(true);
+	        productoAlmacenRepository.save(productoAlmacen);
+	    }
+		
 		return productoRepository.save(producto);
 	}
 
