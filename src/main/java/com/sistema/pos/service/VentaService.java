@@ -87,7 +87,11 @@ public class VentaService {
 		
 		CajaSesion cajaSesion = cajaSesionService.obtenerCajaSesion(ventaDTO.getId_caja_sesion());
 
-		Cliente cliente = clienteService.obtenerClientePorId(ventaDTO.getId_cliente());
+//		Cliente cliente = clienteService.obtenerClientePorId(ventaDTO.getId_cliente());
+		Cliente cliente = null;
+	    if (ventaDTO.getId_cliente() != null) {
+	        cliente = clienteService.obtenerClientePorId(ventaDTO.getId_cliente());
+	    }
 		
 		Venta venta = new Venta();
 		venta.setCliente(cliente);

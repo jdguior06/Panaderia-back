@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer{
 	
 	@Override
     public void configurePathMatch(@NonNull PathMatchConfigurer configurer) {
-        configurer.addPathPrefix("/guior", c -> true);
+        configurer.addPathPrefix("/mi_panaderito", c -> true);
     }
 
     @Override
